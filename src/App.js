@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Chart from "./components/Chart";
 import TrialForm from "./components/TrialForm";
+import {FormattedMessage} from 'react-intl';
 
 function App() {
     const [showChart, doShowChart] = useState(false);
@@ -13,12 +14,14 @@ function App() {
 
   return (
     <div className="App">
+        <h1>
+            <FormattedMessage
+                id="page-heading"
+                defaultMessage={`Monty Hall Problem Simulation`}
+            />
+        </h1>
         <TrialForm handleClick={handleClick}/>
-        {
-            showChart && trials > 0 ? (
-                <Chart trials={trials} />
-            ) : null
-        }
+        <Chart trials={trials} />
     </div>
   );
 }

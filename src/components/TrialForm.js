@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import {FormattedMessage} from 'react-intl';
 
 function TrialForm({handleClick}) {
     const formik = useFormik({
@@ -20,7 +21,12 @@ function TrialForm({handleClick}) {
                 onChange={formik.handleChange}
                 value={formik.values.trials}
             />
-            <button type="submit">Submit</button>
+            <button type="submit">
+                <FormattedMessage
+                    id="submit-btn"
+                    defaultMessage={`Simulate`}
+                />
+            </button>
         </form>
   );
 }
