@@ -1,34 +1,52 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import PropTypes from 'prop-types';
+import {Formik, Form} from 'formik';
 import {FormattedMessage} from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+    formButton: {
+        marginTop: 8,
+        marginLeft: 12
+    }
+}));
+
 
 function TrialForm({handleClick}) {
-    const formik = useFormik({
-        initialValues: {
-            trials: '',
-        },
-        onSubmit: values => {
-            handleClick(values);
-        },
-    });
+    const classes = useStyles();
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <input
-                id="trials"
-                name="trials"
-                type="number"
-                onChange={formik.handleChange}
-                value={formik.values.trials}
-            />
-            <button type="submit">
-                <FormattedMessage
-                    id="submit-btn"
-                    defaultMessage={`Simulate`}
+        <Formik
+            initialValues={{trials: ''}}
+            onSubmit={(values, actions) => {
+                handleClick(values);
+                actions.setSubmitting(false);
+            }}>{({setFieldValue}) => (
+            <Form>
+                <TextField
+                    id="standard-number"
+                    name="trials"
+                    label="Trials"
+                    type="number"
+                    variant="outlined"
+                    onChange={e => setFieldValue('trials', e.target.value)}
                 />
-            </button>
-        </form>
+                <Button type="submit" variant="outlined" className={classes.formButton}>
+                    <FormattedMessage
+                        id="submit-btn"
+                        defaultMessage={`Simulate`}
+                    />
+                </Button>
+            </Form>
+        )}
+        </Formik>
   );
 }
+
+TrialForm.propTypes = {
+    handleClick: PropTypes.func
+};
 
 export default TrialForm;
