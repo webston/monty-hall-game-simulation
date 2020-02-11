@@ -1,5 +1,5 @@
 {
-  "name": "monty-hall-test",
+  "name": "monty-hall-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
