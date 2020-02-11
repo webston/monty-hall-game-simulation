@@ -1,25 +1,32 @@
 const montyHall = (doSwitch) => {
-    const options = [0, 1, 2];
+    const boxes = [0, 1, 2];
 
-    const carIn = Math.floor(Math.random() * options.length);
+    //Generate a random number between 0 and 2
+    const moneyIn = Math.floor(Math.random() * boxes.length);
 
-    const selectedOption = Math.floor(Math.random() * options.length);
+    //Generate a random number between 0 and 2
+    const selectedBox = Math.floor(Math.random() * boxes.length);
 
-    const revealedOption = options.find((option) => option !== carIn && option !== selectedOption);
+    //Create a new array excluding moneyIn and selectedBox
+    const remainingBoxes = boxes.filter((box) => box !== moneyIn && box !== selectedBox);
+
+    //Pick a random box from the remaining boxes
+    const revealedBox = remainingBoxes[Math.floor(Math.random() * remainingBoxes.length)];
 
     if(doSwitch) {
-        if(carIn === options.find((option) => option !== selectedOption && option !== revealedOption)) {
+        //If we switch, the money can't be in the selectedBox and revealedBox so pick the box that is left
+        if(moneyIn === boxes.find((box) => box !== selectedBox && box !== revealedBox)) {
             return true;
         }
-    } else {
-        if(carIn === selectedOption) {
+    } else { //If we stick to our option the money should be in the selectedBox in order to win
+        if(moneyIn === selectedBox) {
             return true;
         }
     }
 }
 
 const simulateMontyHall = (doSwitch, trials) => {
-    if(trials) {
+    if(trials && trials > 0) {
         let gamesWon = 0;
 
         for(let i = 0; i < trials; i++) {

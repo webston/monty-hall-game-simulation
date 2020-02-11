@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import Chart from "./components/Chart";
 import TrialForm from "./components/TrialForm";
 import {FormattedMessage} from 'react-intl';
-import {makeStyles, createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import theme from './lib/theme';
 
 const useStyles = makeStyles(theme => ({
     appWrapper: {
@@ -17,8 +18,7 @@ const useStyles = makeStyles(theme => ({
         padding: 20
     },
     paper: {
-        marginTop: 30,
-        marginBottom: 30,
+
         maxWidth: 1000,
         padding: '20px 20px 50px',
         width: '100%',
@@ -27,26 +27,6 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
     }
 }));
-
-const theme = createMuiTheme();
-
-theme.typography.h1 = {
-    fontSize: '1.2rem',
-    fontWeight: 500,
-    marginBottom: 20,
-    [theme.breakpoints.up('md')]: {
-        fontSize: '2rem',
-    },
-};
-
-theme.typography.h3 = {
-    fontSize: '1rem',
-    fontWeight: 400,
-    marginBottom: 40,
-    [theme.breakpoints.up('md')]: {
-        fontSize: '1.2rem',
-    },
-};
 
 function App() {
     const classes = useStyles();
@@ -64,13 +44,13 @@ function App() {
             <Typography variant="h1">
                 <FormattedMessage
                     id="page-heading"
-                    defaultMessage={`Monty Hall Problem Simulation`}
+                    defaultMessage={`Monty Hall Game Simulation`}
                 />
             </Typography>
             <Typography variant="h3">
                 <FormattedMessage
                     id="page-intro"
-                    defaultMessage={`Monty Hall Problem Simulation`}
+                    defaultMessage={`Use the form to run a simulation of the Monty Hall game and see if it's better to switch or stick to your selected box in the chart below.`}
                 />
             </Typography>
             <TrialForm handleClick={handleClick}/>

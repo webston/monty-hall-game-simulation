@@ -1,9 +1,7 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, Text, ResponsiveContainer } from 'recharts';
 import simulateMontyHall from '../lib/montyHall';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from "prop-types";
-import TrialForm from "./TrialForm";
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     chartWrapper: {
@@ -36,9 +34,9 @@ function Chart({trials}) {
     return (
     <div className={classes.chartWrapper}>
         <ResponsiveContainer>
-            <LineChart data={chartData} margin={{top: 15, right: 10, left: -10, bottom: 10 }}>
+            <LineChart data={chartData} margin={{top: 15, right: 5, left: 5, bottom: 10 }}>
                 <XAxis dataKey='trials' type='number' label={{ value: 'Number of trials', position: 'insideBottom', offset: -10 }}/>
-                <YAxis type='number' label={   <Text
+                <YAxis type='number' label={<Text
                     x={0}
                     y={0}
                     dx={10}
@@ -56,8 +54,5 @@ function Chart({trials}) {
   );
 }
 
-Chart.propTypes = {
-    trials: PropTypes.number.isRequired
-};
 
 export default Chart;
